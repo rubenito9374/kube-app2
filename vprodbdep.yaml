@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: vprodb
-          image: vprofile/vprofiledb:V1
+          image: rubenito/vprofiledb:latest        
 #          args:
 #            - "--ignore-db-dir=lost+found"
           volumeMounts:
@@ -32,11 +32,11 @@ spec:
                   name: app-secret
                   key: db-pass
       nodeSelector:
-        zone: us-east-2a
+        zone: us-east-1b
       volumes:
         - name: vpro-db-data
           awsElasticBlockStore:
-            volumeID: vol-0bcd6bddaa2c94232
+            volumeID: vol-0d7d518b9264d2f4e
             fsType: ext4
       initContainers:
         - name: busybox
@@ -45,3 +45,4 @@ spec:
           volumeMounts:
             - name: vpro-db-data
               mountPath: /var/lib/mysql
+
